@@ -361,11 +361,11 @@ This takes about 10–15 minutes. You can watch CloudFormation in the AWS Consol
 
 3. Verify in AWS Console that these are gone:
 
-EKS cluster
-CloudFormation stacks (search eksctl-ingress-demo-cluster)
-EC2 > Load Balancers (the ALB)
-VPC (the one eksctl created)
-IAM roles prefixed with eksctl-ingress-demo-cluster
+- EKS cluster
+- CloudFormation stacks (search eksctl-ingress-demo-cluster)
+- EC2 > Load Balancers (the ALB)
+- VPC (the one eksctl created)
+- IAM roles prefixed with eksctl-ingress-demo-cluster
 
 
 ---
