@@ -409,7 +409,7 @@ This step by step shows multi-tenancy Kubernetes deployments on AWS EKS Fargate 
 
 The full setup covered:
 
-→ EKS Fargate cluster with eksctl (zero EC2 nodes)  
+→ EKS Fargate serverless cluster with eksctl (zero EC2 nodes)  
 → OIDC association + IRSA so the controller can call AWS APIs securely — no static credentials  
 → IAM policy + service account wired together via CloudFormation  
 → AWS Load Balancer Controller installed via Helm  
