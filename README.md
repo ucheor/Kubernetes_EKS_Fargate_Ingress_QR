@@ -97,7 +97,7 @@ eksctl utils associate-iam-oidc-provider \
     --approve
 ```
 
-[associate cluster OIDC url with AWS IAM](images/associate_cluster_with_OIDC_double_check.png)
+[associate cluster OIDC url with AWS IAM](images/associate_cluster_oidc_with_iam.png)
 
 
 This registers the OIDC provider in AWS IAM and we can verify using the command below
