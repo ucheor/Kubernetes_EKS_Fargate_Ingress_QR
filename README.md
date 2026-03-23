@@ -105,6 +105,8 @@ This registers the OIDC provider in AWS IAM and we can verify using the command 
 aws iam list-open-id-connect-providers | grep <your-cluster-oidc-id> #looks like D3472KDFK74873684JDBS732
 ```
 
+![confirm identity provider registration](images/double_check_addition_to_identity_provider_list.png)
+
 ---
 
 ## Step 3: Create IAM Policy for the Load Balancer Controller Pods (Alternative Below)
@@ -154,7 +156,7 @@ eksctl create iamserviceaccount \
 ```
 The resulting IAM role has a trust policy that says: 'Allow the Kubernetes service account aws-load-balancer-controller in the kube-system namespace of cluster ingress-demo-cluster to assume this role.' This is the IRSA binding in action.
 
-![Create service account and attache policy](images/create_service_account_with_role_and_policy.png)
+![Create service account and attach policy](images/create_service_account_with_role_and_policy.png)
 
 ---
 
