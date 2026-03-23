@@ -12,7 +12,7 @@ By the end, you will have a scalable, resilient, and operationally simplified Ku
 
 -	Container Orchestration - **Kubernetes**
 -	Ingress Controller - **AWS Load Balancer Controller**
--	Serverless Archtechture - **AWS Fargate**
+-	Serverless Architechture - **AWS Fargate**
 
 
 ## GitHub Repository:
@@ -141,7 +141,7 @@ aws iam create-policy \
 
 ## Step 4: Create the IAM Service Account and Attach Policy
 
-In this step, we will create a new service account "aws-load-balancer-controller" and attach the policy we created above to it using a role. This service account is deployed into the kube-system namespace where it will be used by the AWS Load Balancer pods when they are created. Remember to update the command below with your AWS Accound ID. 
+In this step, we will create a new service account "aws-load-balancer-controller" and attach the policy we created above to it using a role. This service account is deployed into the kube-system namespace where it will be used by the AWS Load Balancer pods when they are created. Remember to update the command below with your AWS Account ID. 
 
 ```
 eksctl create iamserviceaccount \
@@ -160,7 +160,9 @@ The resulting IAM role has a trust policy that says: 'Allow the Kubernetes servi
 
 ## Step 5: Install the AWS Load Balancer Controller via Helm
 
-Helm is the standard Kubernetes package manager. The AWS Load Balancer Controller is published as a Helm chart in the eks chart repository, which handles CRD installation, RBAC configuration, Deployment creation, and all supporting resources in one command. We will be installing it using Helm. Note that we will be appling the service account we created above to the load balancer controller created in this step. 
+Helm is the standard Kubernetes package manager. The AWS Load Balancer Controller is published as a Helm chart in the eks chart repository, which handles CRD installation, RBAC configuration, Deployment creation, and all supporting resources in one command. We will be installing it using Helm. 
+
+Note that we will be applying the service account we created above to the load balancer controller created in this step. 
 
 ```
 helm repo add eks https://aws.github.io/eks-charts
@@ -299,7 +301,9 @@ kubectl get ingress -A
 
 ## Step 9: Access the Applications
 
-Both applications should be accessible at different paths under the same ALB — exactly the architecture we designed. The AWS Load Balancer Controller has successfully translated two Kubernetes Ingress resources into a single ALB with path-based routing rules. For these applications, the source code is on /clock and /focus paths to make it easier to demonstrate path based routing. An alternative use case with ingress is host based routing which might give more options for stronger isolation, independent TLS and security policy control, and better alignment with team ownership boundaries.
+Both applications should be accessible at different paths under the same ALB — exactly the architecture we designed. The AWS Load Balancer Controller has successfully translated two Kubernetes Ingress resources into a single ALB with path-based routing rules. For these applications, the source code is on /clock and /focus paths to make it easier to demonstrate path based routing. 
+
+An alternative use case with ingress is host based routing which might give more options for stronger isolation, independent TLS and security policy control, and better alignment with team ownership boundaries.
 
 **Get the Application Load Balancer Address - ALB-DNS**
 
