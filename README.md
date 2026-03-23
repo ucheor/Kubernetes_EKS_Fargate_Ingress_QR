@@ -334,7 +334,7 @@ http://ALB-DNS/focus/           # **replace ALB-DNS with the ALB DNS address fro
 ## Common Pitfalls & How to Avoid Them
 
 1. Ingress not getting an ALB address
--	Check LBC pod logs: kubectl logs -n kube-system -l app.kubernetes.io/name=aws-load-balancer-controller
+-	Check Load Balancer Controller pod logs: kubectl logs -n kube-system -l app.kubernetes.io/name=aws-load-balancer-controller
 -	Verify the Ingress has annotation kubernetes.io/ingress.class: alb
 -	Confirm IRSA is correctly set up — Load Balancer Controller needs AWS API access to create ALBs. Check logs to see if there any missing policy permissions.
 
