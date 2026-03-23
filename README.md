@@ -97,8 +97,7 @@ eksctl utils associate-iam-oidc-provider \
     --approve
 ```
 
-[associate cluster OIDC url with AWS IAM](images/associate_cluster_oidc_with_iam.png)
-
+![associate cluster OIDC url with AWS IAM](images/associate_cluster_oidc_with_iam.png)
 
 This registers the OIDC provider in AWS IAM and we can verify using the command below
 
@@ -110,7 +109,9 @@ aws iam list-open-id-connect-providers | grep <your-cluster-oidc-id> #looks like
 
 ## Step 3: Create IAM Policy for the Load Balancer Controller Pods (Alternative Below)
 
-The AWS Load Balancer Controller needs a broad set of AWS API permissions to manage ALBs, Target Groups, Security Groups, WAF associations, and Shield protections. In this step, we are creating an IAM policy that includes the permissions we need for our AWS Load Balancer Controller to work optimally. Rather than crafting this policy manually, the Load Balancer Controller project publishes a maintained policy document that makes it easy to figure out what permissions we need. We can create the **AWSLoadBalancerControllerIAMPolicy** using the command below.
+The AWS Load Balancer Controller needs a broad set of AWS API permissions to manage ALBs, Target Groups, Security Groups, WAF associations, and Shield protections. 
+
+In this step, we are creating an IAM policy that includes the permissions we need for our AWS Load Balancer Controller to work optimally. Rather than crafting this policy manually, the Load Balancer Controller project publishes a maintained policy document that makes it easy to figure out what permissions we need. We can create the **AWSLoadBalancerControllerIAMPolicy** using the iam_policy.json file in the repository.
 
 ```
 aws iam create-policy \
@@ -118,7 +119,7 @@ aws iam create-policy \
   --policy-document file://iam_policy.json
 ```
 
-[AWSLoadBalancerControllerIAMPolicy Policy created](images/policy_created.png)
+![AWSLoadBalancerControllerIAMPolicy Policy created](images/policy_created.png)
 
 
 **Alternatively,** to download a new copy of iam_policy.json and create a policy using your new copy. You might have to review permissions to ensure Allow is enabled on "elasticloadbalancing:SetRulePriorities". Remember you can add any additionally required permission to the policy through the AWS IAM console if required.
@@ -173,7 +174,11 @@ aws eks describe-cluster \
   --query "cluster.resourcesVpcConfig.vpcId" \
   --output text
 ```
+---
+
 ![VPC information](images/VPC_information.png)
+
+---
 
 ```
 helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
@@ -226,7 +231,9 @@ eksctl create fargateprofile \
 In the AWS Console, navigate to Amazon EKS > Clusters > ingress-demo-cluster. The **Compute** tab should show the Fargate profiles as created. 
 
 ![EKS cluster compute tab](images/cluster_compute_tab.png)
+
 ---
+
 ![Fargate profiles created](images/fargate_profiles_created.png)
 
 ```
@@ -304,14 +311,16 @@ kubectl get ingress focus-ingress -n focus-app -o jsonpath='{.status.loadBalance
 **Worls Clock App**
 Navigate to the ALB hostname with the /clock/ path:
 
-http://<ALB-DNS>/clock/
+http://ALB-DNS/clock/           # *replace ALB-DNS with the ALB DNS address from the ingress*
 
 ![world clock application accessible](images/world_clock_application_running.png)
+
+---
 
 **Focus Timer App**
 Navigate to the ALB hostname with the /focus/ path:
 
-http://<ALB-DNS>/focus/
+http://ALB-DNS/focus/           # *replace ALB-DNS with the ALB DNS address from the ingress*
 
 ![focus timer application accessible](images/focus_timer_application_running.png)
 
