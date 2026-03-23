@@ -1,4 +1,4 @@
-# Deploying AWS Load Balancer Controller on Amazon EKS with Fargate - A Kubernetes Multi-Tenancy Ingress Setup
+# Kubernetes Multi-Tenancy Ingress Setup - Deploying AWS Load Balancer Controller on Amazon EKS with Fargate
 
 Deploying applications on Amazon EKS Fargate provides a truly serverless Kubernetes experience — eliminating the need to manage EC2 worker nodes, perform OS patching, or handle infrastructure scaling.
 
