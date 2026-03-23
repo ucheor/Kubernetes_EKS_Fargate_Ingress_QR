@@ -360,9 +360,20 @@ http://ALB-DNS/focus/           # **replace ALB-DNS with the ALB DNS address fro
 
 # Conclusion
 
-Running the AWS Load Balancer Controller on EKS Fargate is the recommended approach to Kubernetes Ingress in a serverless EKS environment on AWS. The critical dependency chain is: OIDC association enables IRSA, IRSA gives the Load Balancer Controller IAM access, and the Load Balancer Controller translates Ingress resources into real AWS ALBs.
+This step by step shows multi-tenancy Kubernetes deployments on AWS EKS Fargate behind a single Application Load Balancer using the AWS Load Balancer Controller. This demosntration shows Kubernetes Ingress in a serverless EKS environment on AWS. The critical dependency chain is: OIDC association enables IRSA, IRSA gives the Load Balancer Controller IAM access, and the Load Balancer Controller translates Ingress resources into real AWS ALBs.
+
+The full setup covered:
+
+→ EKS Fargate cluster with eksctl (zero EC2 nodes)
+→ OIDC association + IRSA so the controller can call AWS APIs securely — no static credentials
+→ IAM policy + service account wired together via CloudFormation
+→ AWS Load Balancer Controller installed via Helm
+→ Fargate profiles per namespace (world-clock + focus-app)
+→ Path-based routing on a shared ALB: /clock/ and /focus/ on one DNS name, one cost
 
 The pattern demonstrated here — a shared ALB with path-based routing serving multiple namespaced applications — is directly applicable to production multi-tenant environments. It minimizes ALB costs, simplifies DNS management, and keeps Kubernetes-native tooling (kubectl, Helm) as the control plane for your infrastructure.
+
+#Kubernetes #AWS #EKS #Fargate #DevOps #CloudNative #Helm #IRSA #InfrastructureAsCode
 
 ---
 
