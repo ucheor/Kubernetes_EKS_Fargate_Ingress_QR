@@ -13,6 +13,7 @@ By the end, you will have a scalable, resilient, and operationally simplified Ku
 -	Container Orchestration - **Kubernetes**
 -	Ingress Controller - **AWS Load Balancer Controller**
 -	Serverless Architechture - **AWS Fargate**
+-   Kubernetes Package Manager - **Helm**
 
 
 ## GitHub Repository:
