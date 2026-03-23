@@ -5,9 +5,9 @@ metadata:
   namespace: focus-app
   annotations:
     kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/group.name: "demo-shared-alb"
-    alb.ingress.kubernetes.io/scheme: internet-facing      # or internal
-    alb.ingress.kubernetes.io/target-type: ip              # required for Fargate
+    alb.ingress.kubernetes.io/group.name: "demo-shared-alb"   # all ingress with this group name will use the same load balancer
+    alb.ingress.kubernetes.io/scheme: internet-facing      
+    alb.ingress.kubernetes.io/target-type: ip              # required for Fargate (instead of "instance" for EC2)
 spec:
   ingressClassName: alb
   rules:

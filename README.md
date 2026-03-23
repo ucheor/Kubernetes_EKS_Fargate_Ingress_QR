@@ -2,9 +2,11 @@
 
 Deploying applications on Amazon EKS Fargate provides a truly serverless Kubernetes experience — eliminating the need to manage EC2 worker nodes, perform OS patching, or handle infrastructure scaling.
 
-This guide demonstrates how to set up this architecture in a cost-efficient and production-ready manner by integrating ingress capabilities for controlled external access and traffic management.
+This guide demonstrates how to set up this architecture in a cost-efficient and production-ready manner by integrating the AWS Load Balancer Controller as the Ingress Controller — the component responsible for translating Kubernetes Ingress resources into real AWS Application Load Balancers. 
 
-You will walk through the complete process of provisioning an EKS Fargate cluster, configuring the AWS Load Balancer Controller using IAM Roles for Service Accounts (IRSA) for secure, least-privilege access, and deploying two real-world applications behind a shared Application Load Balancer (ALB) using path-based routing.
+Rather than provisioning a separate ALB per service or per namespace, this setup uses a single shared ALB with path-based routing across multiple applications in a multi-tenancy Kubernetes cluster, significantly reducing load balancer costs while maintaining clean traffic isolation between services.
+
+We will walk through the complete process of provisioning an EKS Fargate cluster, configuring the AWS Load Balancer Controller using IAM Roles for Service Accounts (IRSA) for secure, least-privilege access, and deploying two real-world applications behind a shared Application Load Balancer (ALB) using path-based routing.
 
 By the end, you will have a scalable, resilient, and operationally simplified Kubernetes deployment pattern suitable for modern cloud-native workloads.
 
@@ -275,9 +277,20 @@ kubectl apply -f focus-service.yaml
 kubectl apply -f focus-ingress.yaml
 ```
 
-**Ingress Annotation Tip**: Your Ingress resources must include kubernetes.io/ingress.class: alb (or use ingressClassName: alb) and alb.ingress.kubernetes.io/target-type: ip. On Fargate, IP target type is required because there are no node-level ports to use with instance target type.
-
 ![Create deployments, services and ingress](images/create_deployments_services_ingress.png)
+
+
+##Ingress Annotation Tip: 
+
+Your Ingress resources must include kubernetes.io/ingress.class: alb (or use ingressClassName: alb) and alb.ingress.kubernetes.io/target-type: ip. On Fargate, IP target type is required because there are no node-level ports to use with instance target type.
+
+By default, each Ingress resource provisions its own ALB — which means two applications in separate namespaces would create two separate load balancers, doubling your cost. To share a single ALB across both namespaces, add the same group annotation to every Ingress that should share the same ALB:
+```
+alb.ingress.kubernetes.io/group.name: demo-shared-alb
+```
+The AWS Load Balancer Controller uses this group name to merge all matching Ingress resources onto one ALB, with each Ingress contributing its own listener rules. As long as every Ingress in world-clock and focus-app namespaces carry the same group.name value, they will consolidate onto a single ALB — one DNS name, one hourly cost, regardless of how many namespaces or services are behind it.
+
+![matching alb group name](images/alb_group_name.png)
 
 ---
 
@@ -409,4 +422,4 @@ The pattern demonstrated here — a shared ALB with path-based routing serving m
 
 ---
 
-*If this guide helped you, feel free to connect or share. Also reach out if you have any insight on how I can improve this project in the future. What has been your experience setting up Ingress Controllers and managing Ingress.*
+*If this guide helped you, feel free to connect or share. What has been your experience setting up Ingress Controllers and managing Ingress.*
