@@ -396,12 +396,12 @@ This step by step shows multi-tenancy Kubernetes deployments on AWS EKS Fargate 
 
 The full setup covered:
 
-→ EKS Fargate cluster with eksctl (zero EC2 nodes)
-→ OIDC association + IRSA so the controller can call AWS APIs securely — no static credentials
-→ IAM policy + service account wired together via CloudFormation
-→ AWS Load Balancer Controller installed via Helm
-→ Fargate profiles per namespace (world-clock + focus-app)
-→ Path-based routing on a shared ALB: /clock/ and /focus/ on one DNS name, one cost
+→ EKS Fargate cluster with eksctl (zero EC2 nodes)  
+→ OIDC association + IRSA so the controller can call AWS APIs securely — no static credentials  
+→ IAM policy + service account wired together via CloudFormation  
+→ AWS Load Balancer Controller installed via Helm  
+→ Fargate profiles per namespace (world-clock + focus-app)  
+→ Path-based routing on a shared ALB: /clock/ and /focus/ on one DNS name, one cost  
 
 The pattern demonstrated here — a shared ALB with path-based routing serving multiple namespaced applications — is directly applicable to production multi-tenant environments. It minimizes ALB costs, simplifies DNS management, and keeps Kubernetes-native tooling (kubectl, Helm) as the control plane for your infrastructure.
 
