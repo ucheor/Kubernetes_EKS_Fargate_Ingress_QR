@@ -10,18 +10,18 @@ By the end, you will have a scalable, resilient, and operationally simplified Ku
 
 ## Tools:
 
--	Container Orchestration - Kubernetes
--	Ingress Controller - AWS Load Balancer Controller
--	Serverless Archtechture - AWS Fargate
+-	Container Orchestration - **Kubernetes**
+-	Ingress Controller - **AWS Load Balancer Controller**
+-	Serverless Archtechture - **AWS Fargate**
 
 
-## GitHub Repository
+## GitHub Repository:
 
 **https://github.com/ucheor/Kubernetes_EKS_Fargate_Ingress_QR.git**
 
 ---
 
-## Architecture Overview
+## Architecture Overview:
 
 Before diving in, here is what we are building:
 
@@ -60,9 +60,14 @@ It took about 15 minutes for the cluster to be ready so be ready to give it some
 
 ![AWS EKS Dashboard](images/AWS_EKS_dashboard.png)
 
+---
+
 ![OIDC provider url](images/cluster_OIDC_role_details.png)
 
-**Important**
+---
+
+**Important:**
+
 The **Overview** tab for the ingress-demo-cluster displays the OpenID Connect (OIDC) provider URL which we will need in the coming steps to verify provider registration. The **Networking** tab reveals the VPC ID that was automatically created by eksctl. You will need this VPC ID when installing the AWS Load Balancer Controller via Helm in an upcoming step. The **Compute** tab confirms the design intent: zero managed node groups. All compute is handled by Fargate. Note the current Fargate profiles - **default** and **kube-system**.
 
 ---
