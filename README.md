@@ -280,7 +280,7 @@ kubectl apply -f focus-ingress.yaml
 ![Create deployments, services and ingress](images/create_deployments_services_ingress.png)
 
 
-##Ingress Annotation Tip: 
+## Ingress Annotation Tip: 
 
 Your Ingress resources must include kubernetes.io/ingress.class: alb (or use ingressClassName: alb) and alb.ingress.kubernetes.io/target-type: ip. On Fargate, IP target type is required because there are no node-level ports to use with instance target type.
 
