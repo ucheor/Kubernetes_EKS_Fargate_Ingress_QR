@@ -311,7 +311,7 @@ kubectl get ingress focus-ingress -n focus-app -o jsonpath='{.status.loadBalance
 **Worls Clock App**
 Navigate to the ALB hostname with the /clock/ path:
 
-http://ALB-DNS/clock/           # *replace ALB-DNS with the ALB DNS address from the ingress*
+http://ALB-DNS/clock/           # *replace ALB-DNS with the ALB DNS address from the ingress - http*
 
 ![world clock application accessible](images/world_clock_application_running.png)
 
@@ -320,7 +320,7 @@ http://ALB-DNS/clock/           # *replace ALB-DNS with the ALB DNS address from
 **Focus Timer App**
 Navigate to the ALB hostname with the /focus/ path:
 
-http://ALB-DNS/focus/           # *replace ALB-DNS with the ALB DNS address from the ingress*
+http://ALB-DNS/focus/           # *replace ALB-DNS with the ALB DNS address from the ingress - http*
 
 ![focus timer application accessible](images/focus_timer_application_running.png)
 
