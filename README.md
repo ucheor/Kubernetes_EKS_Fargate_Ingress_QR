@@ -197,7 +197,7 @@ Key flags explained:
 
 ![AWS Load Balancer Controller Installed using Helm](images/AWS_Load_Balancer_Controller_installed.png)
 
-Let's go ahead and make sure the AWS Load Balancer Controller pods are running and deployment is sucessful.
+Let's go ahead and make sure the AWS Load Balancer Controller pods are running and deployment is successful.
 
 ```
 kubectl get deployment -n kube-system aws-load-balancer-controller
@@ -270,7 +270,7 @@ kubectl apply -f focus-service.yaml
 kubectl apply -f focus-ingress.yaml
 ```
 
-**Ingress annotation tip**: Your Ingress resources must include kubernetes.io/ingress.class: alb (or use ingressClassName: alb) and alb.ingress.kubernetes.io/target-type: ip. On Fargate, IP target type is required because there are no node-level ports to use with instance target type.
+**Ingress Annotation Tip**: Your Ingress resources must include kubernetes.io/ingress.class: alb (or use ingressClassName: alb) and alb.ingress.kubernetes.io/target-type: ip. On Fargate, IP target type is required because there are no node-level ports to use with instance target type.
 
 ![Create deployments, services and ingress](images/create_deployments_services_ingress.png)
 
@@ -278,8 +278,7 @@ kubectl apply -f focus-ingress.yaml
 
 ## Step 8: Verify Pods and Ingress
 
-**Confirming All Pods are Running**
-Confirm all application pods are running to confirm a healthy deployment. 
+**Confirming All Pods are Running**: Confirm all application pods are running to confirm a healthy deployment. 
 
 ```
 kubectl get pods -A
@@ -308,7 +307,7 @@ Both applications should be accessible at different paths under the same ALB —
 kubectl get ingress focus-ingress -n focus-app -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
 ```
 
-**Worls Clock App**
+**World Clock App**
 
 Navigate to the ALB hostname with the /clock/ path:
 
