@@ -14,11 +14,11 @@ By the end, you will have a scalable, resilient, and operationally simplified Ku
 
 Before diving in, here is what we are building:
 
-•	An EKS cluster (ingress-demo-cluster) in us-east-1, running entirely on Fargate
-•	Three Fargate profiles: fp-default (default + kube-system), focus-app-profile, world-clock-profile
-•	Two applications in isolated namespaces: world-clock and focus-app
-•	A single shared ALB routing traffic by URL path: /clock/ and /focus/
-•	The AWS Load Balancer Controller running in kube-system, managing ALB lifecycle
+-	An EKS cluster (ingress-demo-cluster) in us-east-1, running entirely on Fargate
+-	Three Fargate profiles: fp-default (default + kube-system), focus-app-profile, world-clock-profile
+-	Two applications in isolated namespaces: world-clock and focus-app
+-	A single shared ALB routing traffic by URL path: /clock/ and /focus/
+-	The AWS Load Balancer Controller running in kube-system, managing ALB lifecycle
 
 A key architectural decision in this design is implementing path-based routing across multiple namespaces using a single Application Load Balancer (ALB).
 
