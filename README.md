@@ -340,13 +340,13 @@ http://ALB-DNS/focus/           # **replace ALB-DNS with the ALB DNS address fro
 
 ## Step 10: Clean Up
 
-Time to clean up provisioned resources. Eksctl cluster delete tears down everything it originally created — the CloudFormation stack, VPC, subnets, Fargate profiles, and the EKS control plane. It does not touch resources created outside of CloudFormation, so you should manually clean up first:
+Time to clean up provisioned resources. Eksctl cluster delete tears down everything it originally created — the CloudFormation stack, VPC, subnets, Fargate profiles, and the EKS control plane. Let's delete the ALB to make sure they are not left behind in our account. Deleting the ingress will also trigger a delete of the ALB that was created to work with the ingress.
 
 1. Delete your Ingress resources first (removes the ALBs from AWS)
 ```
 kubectl delete ingress --all -A
 ```
-Wait until kubectl get ingress -A shows nothing — the Load Balancer Controller needs time to call the AWS API and delete the ALBs. If you skip this, the ALBs orphan in your account and keep billing.
+Wait until kubectl get ingress -A shows nothing — the Load Balancer Controller needs time to call the AWS API and delete the ALBs. If you skip this, the ALBs might orphan in your account and keep billing.
 
 2. Then delete the cluster
 ```
