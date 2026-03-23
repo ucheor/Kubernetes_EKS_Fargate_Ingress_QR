@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clock-deployment
+  namespace: world-clock
+  labels:
+    app: world-clock
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: world-clock
+  template:
+    metadata:
+      labels:
+        app: world-clock
+    spec:
+      containers:
+      - name: world-clock
+        image: public.ecr.aws/m1y0v6d8/worldclock/clock:latest
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always

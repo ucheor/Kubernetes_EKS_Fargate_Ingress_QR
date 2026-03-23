@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: focus-deployment
+  namespace: focus-app
+  labels:
+    app: focus-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: focus-app
+  template:
+    metadata:
+      labels:
+        app: focus-app
+    spec:
+      containers:
+      - name: focus-app
+        image: public.ecr.aws/m1y0v6d8/focusapp/focus:latest
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always
+    

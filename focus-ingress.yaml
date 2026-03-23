@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: focus-ingress
+  namespace: focus-app
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/group.name: "demo-shared-alb"
+    alb.ingress.kubernetes.io/scheme: internet-facing      # or internal
+    alb.ingress.kubernetes.io/target-type: ip              # required for Fargate
+spec:
+  ingressClassName: alb
+  rules:
+  - http:
+      paths:
+      - path: /focus
+        pathType: Prefix
+        backend:
+          service:
+            name: focus-service
+            port:
+              number: 80
+              

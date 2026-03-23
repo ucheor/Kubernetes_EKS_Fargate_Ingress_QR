@@ -1,0 +1,40 @@
+# apply with eksctl create fargateprofile -f profile-fargate.yaml
+
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: ingress-demo-cluster
+  region: us-east-1  # Replace with your region
+  version: "1.30"     # Replace with your cluster version
+
+fargateProfiles:
+- name: world-clock
+  selectors:
+  - namespace: world-clock
+
+# eksctl create fargateprofile \
+#     --cluster ingress-demo-cluster \
+#     --name world-clock-profile \
+#     --namespace world-clock
+
+--- 
+# apply with eksctl create fargateprofile -f profile-fargate.yaml
+
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: ingress-demo-cluster
+  region: us-east-1  # Replace with your region
+  version: "1.30"     # Replace with your cluster version
+
+fargateProfiles:
+- name: focus-app
+  selectors:
+  - namespace: focus-app
+
+# eksctl create fargateprofile \
+#     --cluster ingress-demo-cluster \
+#     --name focus-app-profile \
+#     --namespace focus-app

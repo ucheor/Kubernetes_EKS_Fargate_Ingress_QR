@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: clock-service
+  namespace: world-clock
+  # annotations:
+  #   alb.ingress.kubernetes.io/healthcheck-path: /index.html
+  #   alb.ingress.kubernetes.io/target-type: ip       # for Fargate
+  labels:
+    app: world-clock
+spec:
+  type: ClusterIP
+  selector:
+    app: world-clock
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      
