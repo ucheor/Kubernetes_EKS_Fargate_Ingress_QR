@@ -1,4 +1,4 @@
-## Deploying AWS Load Balancer Controller on Amazon EKS with Fargate - A Kubernetes Multi-Tenancy Ingress Setup
+# Deploying AWS Load Balancer Controller on Amazon EKS with Fargate - A Kubernetes Multi-Tenancy Ingress Setup
 
 Deploying applications on Amazon EKS Fargate provides a truly serverless Kubernetes experience — eliminating the need to manage EC2 worker nodes, perform OS patching, or handle infrastructure scaling.
 
@@ -7,6 +7,12 @@ This guide demonstrates how to set up this architecture in a cost-efficient and 
 You will walk through the complete process of provisioning an EKS Fargate cluster, configuring the AWS Load Balancer Controller using IAM Roles for Service Accounts (IRSA) for secure, least-privilege access, and deploying two real-world applications behind a shared Application Load Balancer (ALB) using path-based routing.
 
 By the end, you will have a scalable, resilient, and operationally simplified Kubernetes deployment pattern suitable for modern cloud-native workloads.
+
+# Tools:
+
+-	Container Orchestration - Kubernetes
+-	Ingress Controller - AWS Load Balancer Controller
+-	Serverless Archtechture - AWS Fargate
 
 ---
 
@@ -51,7 +57,7 @@ It took about 15 minutes for the cluster to be ready so be ready to give it some
 
 ---
 
-# Verify the Cluster
+## Verify the Cluster
 Once creation completes, verify the cluster is ready and that Fargate nodes have registered. Note that the Fargate nodes are AWS managed nodes which are different from EC2 instances. You do not have access to manage node configuration and updates on Fargate since they are managed by AWS.
 
 ```
