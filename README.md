@@ -17,6 +17,8 @@ By the end, you will have a scalable, resilient, and operationally simplified Ku
 -	Serverless Architechture - **AWS Fargate**
 -   Kubernetes Package Manager - **Helm**
 
+## System Requirements:  
+To manage your Amazon EKS environment, ensure the following tools are installed and configured: kubectl, AWS cli, eksctl and Helm
 
 ## GitHub Repository:
 
