@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: focus-app
-        image: public.ecr.aws/m1y0v6d8/focusapp/focus:latest
+        image: public.ecr.aws/ucheor/focusapp/focus:latest
         ports:
         - containerPort: 80
         imagePullPolicy: Always
