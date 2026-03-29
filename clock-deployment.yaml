@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: world-clock
-        image: public.ecr.aws/m1y0v6d8/worldclock/clock:latest
+        image: public.ecr.aws/ucheor/worldclock/clock:latest
         ports:
         - containerPort: 80
         imagePullPolicy: Always
